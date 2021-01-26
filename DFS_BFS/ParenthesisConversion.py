@@ -44,12 +44,12 @@ def removelr(p):
 
 
 def reversestr(p):
-    tp = list(p)
-    tp.reverse()
     s = ""
-    for i in tp:
-        s += i
-
+    for i in p:
+        if i == "(":
+            s += ")"
+        else:
+            s += "("
     return s
 
 
@@ -59,8 +59,8 @@ def solution(p):
         return ''
 
     u, v = sepstr(p)
-    print("p = " + p)
-    print("u = " + u)
+    # print("p = " + p)
+    # print("u = " + u)
 
     if isrightstr(u):
         v = solution(v)
@@ -82,3 +82,5 @@ print(solution("(()())()"))
 print(solution(")("))
 print(solution("()))((()"))
 # print(sepstr("(()())()"))
+
+# print(reversestr("()))((()"))
