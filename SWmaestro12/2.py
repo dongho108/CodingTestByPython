@@ -3,7 +3,6 @@ def main():
 
     pc = [h] * (p+1)
 
-
     for i in range(n):
         a, b = map(int, input().split())
         if pc[a] < b:

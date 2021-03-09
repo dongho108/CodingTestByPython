@@ -21,6 +21,7 @@ def main():
         if graph[i] == 1:
             a = i
             count += 1
+
         if graph[j] == 1:
             b = j
             count += 1

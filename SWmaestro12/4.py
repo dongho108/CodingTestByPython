@@ -13,9 +13,9 @@ def main():
         while visited[now] != True:
             visited[now] = True
             count += 1
-            # print(count)
-            # print(now, data[now], now+data[now])
-            # print(visited)
+            print(count)
+            print(now, data[now], now+data[now])
+            print(visited)
             now = now + data[now]
 
         count += 1
@@ -27,3 +27,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+'''
+10
+3 5 -1 -2 4 4 3 -2 -3 -2
+'''
