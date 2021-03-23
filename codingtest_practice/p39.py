@@ -1,3 +1,6 @@
+import heapq
+
+
 def display(arr):
     for i in range(len(arr)):
         for j in range(len(arr)):
@@ -16,6 +19,34 @@ while t > 0:
     for i in range(n):
         data.append(list(map(int, input().split())))
 
+    dir = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    INF = int(1e9)
+    distance = [[INF]*n for i in range(n)]
+
+    q = []
+    q.append((data[0][0], 0, 0))
+    distance[0][0] = data[0][0]
+
+    while q:
+        dist, x, y = heapq.heappop(q)
+
+        if distance[x][y] < dist:
+            continue
+
+        for d in dir:
+            nx = d[0] + x
+            ny = d[1] + y
+
+            if 0 <= nx < n and 0 <= ny < n:
+                cost = dist + data[nx][ny]
+
+                if cost < distance[nx][ny]:
+                    distance[nx][ny] = cost
+                    heapq.heappush(q, (cost, nx, ny))
+
+    display(distance)
+    print(distance[n-1][n-1])
 
 
     t -= 1
