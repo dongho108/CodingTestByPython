@@ -28,29 +28,35 @@ def solution(enroll, referral, seller, amount):
             graph[i] = up_index
             bfs_graph[up_index].append(i)
 
-    print(new_enroll)
-    print(graph)
+    # print(new_enroll)
+    # print(graph)
     enroll_cost = [0] * (n)
-    print(enroll_cost)
+    # print(enroll_cost)
 
     for i in range(len(seller)):
         cost = amount[i] * 100
         pre_index = new_enroll.index(seller[i])
-        enroll_cost[pre_index] += (cost * 0.9)
-
         now = cost * 0.1
-        print(pre_index)
+        if now < 2:
+            now = 0
+
+        enroll_cost[pre_index] += (cost - now)
+        # print("pre, cost", pre_index, cost-now)
+
+
         while True:
             now_index = graph[pre_index]
 
-            print(now_index, now)
+            # print("now, cost", now_index, now)
             if now_index == -1:
                 break
 
             if now * 0.1 > 1:
-                enroll_cost[now_index] += now * 0.9
-                now = now * 0.1
-                print(now)
+                now_cost = round(now*0.9)
+
+                enroll_cost[now_index] += now_cost
+                # print("now, now*0.9", now_index, now_cost)
+                now = now - now_cost
                 pre_index = now_index
             else:
                 if now < 2:
@@ -59,11 +65,12 @@ def solution(enroll, referral, seller, amount):
                     enroll_cost[now_index] += now
                 break
 
-        print(enroll_cost)
+    enroll_cost.pop(0)
     answer = enroll_cost
     return answer
 
 print(solution(["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"], ["-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"], ["young", "john", "tod", "emily", "mary"], [12, 4, 2, 5, 10]))
+print(solution(["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"], ["-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"],	["sam", "emily", "jaimie", "edward"],	[2, 3, 5, 4]))
 # 입출력 예
 # enroll	referral	seller	amount	result
 # ["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"]	["-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"]	["young", "john", "tod", "emily", "mary"]	[12, 4, 2, 5, 10]	[360, 958, 108, 0, 450, 18, 180, 1080]
