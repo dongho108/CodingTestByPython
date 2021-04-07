@@ -2,8 +2,9 @@ import pandas as pd
 
 prefix = "/Users/dongho/Documents/Dbooks/배송엑셀/2020-고1,2-3월모의엑셀/발송처리2021"
 suffix = ".xlsx"
-date_list = ['0323', '0324', '0325', '0326', '0329', '0330', '0331']
-
+# date_list = ['0323', '0324', '0325', '0326', '0329', '0330', '0331']
+# date_list = ['0401', '0402']
+date_list = ['0405']
 
 def excel_read(prefix, suffix):
     xlsx = pd.read_excel(prefix + suffix, sheet_name='발송처리', engine='openpyxl')
