@@ -1,6 +1,3 @@
-import heapq
-
-
 def solution(a):
     answer = 0
 
@@ -8,12 +5,8 @@ def solution(a):
         if i == 0 or i == len(a)-1:
             answer += 1
             continue
-        left = a[:i]
-        right = a[i+1:]
-        heapq.heapify(left)
-        heapq.heapify(right)
-        left_min = heapq.heappop(left)
-        right_min = heapq.heappop(right)
+        left_min = min(a[:i])
+        right_min = min(a[i+1:])
         temp = [left_min, right_min, a[i]]
         if max(temp) != a[i]:
             answer += 1
